@@ -6,7 +6,7 @@
 #include <SdFatUtil.h>
 
 // SD chip select pin
-const uint8_t chipSelect = SS;
+const uint8_t chipSelect = 8;
 
 // number of lines to print
 const uint16_t N_PRINT = 20000;
@@ -28,6 +28,7 @@ void setup() {
   while (!Serial) {
     // wait for Leonardo
   }
+  delay (5000);
 }
 //------------------------------------------------------------------------------
 void loop() {

@@ -11,7 +11,7 @@
  * Adafruit SD shields and modules, pin 10.
  * Default SD chip select is the SPI SS pin.
  */
-const uint8_t SD_CHIP_SELECT = SS;
+const uint8_t SD_CHIP_SELECT = 8;
 /*
  * Set DISABLE_CHIP_SELECT to disable a second SPI device.
  * For example, with the Ethernet shield, set DISABLE_CHIP_SELECT
@@ -146,6 +146,7 @@ void volDmp() {
 void setup() {
   Serial.begin(9600);
   while(!Serial) {}  // wait for Leonardo
+  delay (5000);
 
   // use uppercase in hex and use 0X base prefix
   cout << uppercase << showbase << endl;
@@ -178,7 +179,7 @@ void loop() {
   uint32_t t = millis();
   // initialize the SD card at SPI_HALF_SPEED to avoid bus errors with
   // breadboards.  use SPI_FULL_SPEED for better performance.
-  if (!sd.cardBegin(SD_CHIP_SELECT, SPI_HALF_SPEED)) {
+  if (!sd.cardBegin(SD_CHIP_SELECT, SPI_CLOCK_DIV4)) {
     sdErrorMsg("\ncardBegin failed");
     return;
   }

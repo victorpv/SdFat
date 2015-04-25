@@ -98,6 +98,19 @@ uint8_t const SD_CARD_TYPE_SD2  = 2;
 uint8_t const SD_CARD_TYPE_SDHC = 3;
 //------------------------------------------------------------------------------
 // SPI divisor constants
+#ifdef __STM32F1__
+#include <SPI.h>
+/** Set SCK to max rate of F_CPU/2. */
+uint8_t const SPI_FULL_SPEED = SPI_CLOCK_DIV2;
+/** Set SCK rate to F_CPU/4. */
+uint8_t const SPI_HALF_SPEED = SPI_CLOCK_DIV4;
+/** Set SCK rate to F_CPU/8. */
+uint8_t const SPI_QUARTER_SPEED = SPI_CLOCK_DIV8;
+/** Set SCK rate to F_CPU/16. */
+uint8_t const SPI_EIGHTH_SPEED = SPI_CLOCK_DIV16;
+/** Set SCK rate to F_CPU/32. */
+uint8_t const SPI_SIXTEENTH_SPEED = SPI_CLOCK_DIV32;
+#else
 /** Set SCK to max rate of F_CPU/2. */
 uint8_t const SPI_FULL_SPEED = 2;
 /** Set SCK rate to F_CPU/3 for Due */
@@ -112,6 +125,7 @@ uint8_t const SPI_QUARTER_SPEED = 8;
 uint8_t const SPI_EIGHTH_SPEED = 16;
 /** Set SCK rate to F_CPU/32. */
 uint8_t const SPI_SIXTEENTH_SPEED = 32;
+#endif // (__STM32F1__)
 //------------------------------------------------------------------------------
 // SD operation timeouts
 /** init timeout ms */

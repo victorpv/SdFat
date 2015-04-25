@@ -6,7 +6,7 @@
 #include <SdFatUtil.h>
 
 // SD chip select pin
-const uint8_t chipSelect = SS;
+const uint8_t chipSelect = 8;
 
 // Size of read/write.
 const size_t BUF_SIZE = 512;
@@ -63,7 +63,7 @@ void cidDmp() {
 void setup() {
   Serial.begin(9600);
   while (!Serial) {} // wait for Leonardo
-  delay(1000);
+  delay(5000);
   cout << F("\nUse a freshly formatted SD for best performance.\n");
 
   // use uppercase in hex and use 0X base prefix
