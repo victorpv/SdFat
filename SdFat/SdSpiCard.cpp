@@ -124,15 +124,15 @@ bool SdSpiCard::begin(m_spi_t* spi, uint8_t chipSelectPin, uint8_t sckDivisor) {
   uint16_t t0 = (uint16_t)millis();
   uint32_t arg;
 
+  // set SCK rate for initialization commands
+  m_sckDivisor = sckDivisor;
+  spiInit(m_sckDivisor);
+
   pinMode(m_chipSelectPin, OUTPUT);
   digitalWrite(m_chipSelectPin, HIGH);
   spiBegin();
 
-  // set SCK rate for initialization commands
-  m_sckDivisor = SPI_SCK_INIT_DIVISOR;
-  spiInit(m_sckDivisor);
-
-  // must supply min of 74 clock cycles with CS high.
+   // must supply min of 74 clock cycles with CS high.
   for (uint8_t i = 0; i < 10; i++) {
     spiSend(0XFF);
   }

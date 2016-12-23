@@ -89,9 +89,6 @@ void SdSpi::send(const uint8_t* buf , size_t n) {
 
 #else  // #if USE_STM32F1_DMAC
   SPI.write (buf, n);
-  if (spi_is_rx_nonempty(SPI1)) {
-    uint8_t b = spi_rx_reg(SPI1);
-  }
 #endif  
 }
 #endif  // USE_NATIVE_STM32F1_SPI
